@@ -22,5 +22,18 @@ router.post('/appointments', (req, res) => {
     .catch(err => console.error(err))
 })
 
+router.put('/appointments/:id', (req, res) => {
+    Appointment.findByIdAndUpdate(req.paramss.id, req.body)
+    .then(appointments => res.json(appointments))
+    .catch(err => console.error(err))
+})
+
+router.delete('/appointments/:id', (req, res) => {
+    Appointment.findByIdAndDelete(req.params.id)
+    .then(() => res.sendStatus(200))
+    .catch(err => console.error(err))
+})
+
+
 
 module.exports = router
