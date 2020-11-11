@@ -1,11 +1,11 @@
+require('dotenv').config()
+
 const express = require('express')
 const { join } = require('path')
 const passport = require('passport')
 const { Strategy } = require('passport-local')
 const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
 const { User } = require('./models')
-
-require('dotenv').config()
 
 const app = express()
 
@@ -15,10 +15,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-
-app.use(require('./routes'))
-
-
 
 
 app.use(passport.initialize())
@@ -34,6 +30,9 @@ passport.use(new JWTStrategy({
 }, ({ id }, cb) => User.findById(id)
   .then(user => cb(null, user))
   .catch(err => cb(err))))
+
+
+app.use(require('./routes'))
 
 
 if (process.env.NODE_ENV === 'production') {
