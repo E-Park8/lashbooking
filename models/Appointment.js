@@ -1,5 +1,6 @@
 const { model, Schema } = require('mongoose')
 
+//will fill in type of services offered when information is presented by client
 const Appointment = new Schema({
     date: {
         type: Date,

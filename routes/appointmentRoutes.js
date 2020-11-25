@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const { Appointment, User } = require('../models')
 
+
 router.get('/appointments', (req, res) => {
     Appointment.find()
     .populate('user')

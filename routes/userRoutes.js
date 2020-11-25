@@ -24,12 +24,12 @@ router.post('/users/login', (req, res) => {
   })
 })
 
-// Get player info from user token
+// Get user info from user token
 router.get('/users/myself', passport.authenticate('jwt'), (req, res) => {
   res.json(req.user)
 })
 
-// User get players locked behind token login
+// User get appointments locked behind token login
 router.get('/users', passport.authenticate('jwt'), (req, res) => {
   User.findById(req.user._id)
     .populate('appointments')
